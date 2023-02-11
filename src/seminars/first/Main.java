@@ -155,6 +155,14 @@ public class Main {
      * 5. Проверить, что герой это человек (свойство isHuman)<p>
      */
     public static void checkingHero(Hero hero) {
+        assertThat(hero.getName()).isEqualTo("Emmett");
+        assertThat(hero.getArmorStrength()).isEqualTo(50);
+        assertThat(hero.getWeapon()).isEqualTo("sword");
+        assertThat(hero.getBag())
+                .isNotEmpty()
+                .hasSize(3)
+                .contains("Bow", "Axe", "Gold");
+        assert hero.isHuman();
     }
 
 }
