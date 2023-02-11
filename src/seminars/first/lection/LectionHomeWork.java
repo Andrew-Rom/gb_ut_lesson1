@@ -43,6 +43,8 @@ public class LectionHomeWork {
             throw new AssertionError("Ошибка в методе");
         }
         assert 8 == Calculator.calculation(2, 6, '+');
+
+        // Самый информативный
         assertThat(Calculator.calculation(2, 6, '+')).isEqualTo(8);
     }
 }

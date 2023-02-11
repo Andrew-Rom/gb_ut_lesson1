@@ -15,20 +15,21 @@ public class Main {
 
 
     public static void main(String[] args) {
-        assertConditionA();
+//        assertConditionA();
 
-        assertConditionB();
+//        assertConditionB();
 
-        System.out.println(sum(2_147_483_647, 2));
+//        System.out.println(sum(2_147_483_647, 2));
 
-        happyNY();
+//        happyNY();
 
-        expectedValue();
+//        expectedValue();
 
-        checkingShoppingCart();
+//        checkingShoppingCart();
 
-        String[] colors = {"...", "...",};
-        testingJavaCollectionsAssertJ(colors);
+//        String[] colors = {"...", "...",};
+//        String[] colors = {"aqua", "orange", "green", "violet", "yellow", "blue", "gold"};
+//        testingJavaCollectionsAssertJ(colors);
 
         List<String> heroBag = Arrays.asList("Bow", "Axe", "Gold");
         Hero emmett = new Hero("Emmett", 50, "sword", heroBag, true);
@@ -40,7 +41,7 @@ public class Main {
      */
     public static void assertConditionA() {
         String[] weekends = {"Суббота", "Воскресенье"};
-        assert weekends.length == 3;
+        assert weekends.length == 2; // Исправлено (было 2)
         System.out.println("В неделе " + weekends.length + " дня выходных");
     }
 
@@ -49,7 +50,7 @@ public class Main {
      */
     public static void assertConditionB() {
         int x = -1;
-        assert x >= 0;
+        assert x < 0; // Исправлен знак
     }
 
     /**
@@ -63,6 +64,7 @@ public class Main {
      * @apiNote assert boolean_выражение : сообщение_об_ошибке;
      */
     public static int sum(int a, int b) {
+        assert (Integer.MAX_VALUE - a >= b) : "Значение вышло за пределы переменной int";
         return a + b;
     }
 
@@ -77,6 +79,8 @@ public class Main {
 
         // Получили строку currentDateTime в формате "09/12/2022 20:20:04"
 
+        // Ошибка в том, что должно быть больше
+
         assert currentDateTime.equals("01/01/2023 00:00:00") : "Еще 2022 год :(";
         System.out.println("С новым годом!");
     }
@@ -89,6 +93,7 @@ public class Main {
         productCategories.add("fruits");
         productCategories.add("vegetables");
         productCategories.add("bakery");
+        productCategories.add("drinks");
 
         ArrayList<String> products = new ArrayList<>();
         products.add("apple");
@@ -97,14 +102,22 @@ public class Main {
         products.add("water");
 
         for (String product : products) {
-            if (product.equals("apple")) {
-                System.out.println("category: " + productCategories.get(0));
-            } else if (product.equals("tomato")) {
-                System.out.println("category: " + productCategories.get(1));
-            } else if (product.equals("bread")) {
-                System.out.println("category: " + productCategories.get(2));
-            } else {
-                assert false : "Unknown category for the product " + product;
+            switch (product) {
+                case "apple":
+                    System.out.println("category: " + productCategories.get(0));
+                    break;
+                case "tomato":
+                    System.out.println("category: " + productCategories.get(1));
+                    break;
+                case "bread":
+                    System.out.println("category: " + productCategories.get(2));
+                    break;
+                case "water":
+                    System.out.println("category: " + productCategories.get(3));
+                    break;
+                default:
+                    assert false : "Unknown category for the product " + product;
+                    break;
             }
         }
     }
@@ -113,7 +126,7 @@ public class Main {
      * 6) Найдите ошибку
      */
     public static void expectedValue() {
-        assertThat(5).isEqualTo(sum(2, 3));
+        assertThat(sum(2, 3)).isEqualTo(5); // Слева - утверждение, справа - с сем сравнивается
     }
 
     /**
