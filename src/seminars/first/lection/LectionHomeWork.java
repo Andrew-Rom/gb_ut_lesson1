@@ -10,9 +10,10 @@ public class LectionHomeWork {
 
     public static void main(String[] args) {
         // Примерные решения домашних заданий из 1 лекции:
-        method1();
-        method2();
-        method3();
+//        method1();
+//        method2();
+//        method3();
+        System.out.println(Calculator.calculatingDiscount(300.5, 50));
     }
 
     /**
