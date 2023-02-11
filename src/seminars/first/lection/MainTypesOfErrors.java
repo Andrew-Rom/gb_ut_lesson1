@@ -2,12 +2,12 @@
 //
 //public class MainTypesOfErrors {
 //
-////     Типы ошибок. Синтаксические
+////     Типы ошибок. Синтаксическая ошибка (в строке 7 отсутствует ;)
 //    public static void main(String[] args) {
 //        System.out.println("Hello world!")
 //    }
 //
-////     Типы ошибок. ?
+////     Типы ошибок. Логическая-семантическая (строка 18)
 //    public static void main(String[] args) {
 //        compareNumbers(2, 2); // Вызывается метод сравнения двух чисел
 //    }
@@ -20,7 +20,7 @@
 //        }
 //    }
 //
-////     Типы ошибок. ?
+////     Типы ошибок. Ошибка выполнения (деление на ноль) - обычно не тестируется
 //  public static void main(String[] args) {
 //      int a = 10, b = 0;
 //      System.out.printf("Result: %d", a / b);
