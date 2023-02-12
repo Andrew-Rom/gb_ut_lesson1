@@ -14,6 +14,7 @@ public class LectionHomeWork {
 //        method2();
 //        method3();
         System.out.println(Calculator.calculatingDiscount(300.5, 50));
+        System.out.println(Calculator.calculatingDiscount(300.5, 0));
     }
 
     /**
