@@ -25,10 +25,8 @@ public class Shop {
             {
                 if (products.get(j).getCost() < products.get(pos).getCost()) pos = j;
             }
-            products.set(i, products.get(pos));
-            products.remove(pos + 1);
-            products.set(pos, products.get(i + 1));
-            products.remove(i + 1);
+            products.set(i, products.remove(pos));
+            products.set(pos, products.remove(i + 1));
         }
         return products;
     }
