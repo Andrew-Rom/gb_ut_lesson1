@@ -12,7 +12,8 @@ public class ShopTest {
 
         Shop shop = new Shop();
         shop.setProducts(getTestProducts());
-        //checkingSortingMethod(shop.getSortedListProducts());
+        checkingShop(shop);
+        checkingSortingMethod(shop.getSortedListProducts());
         checkingSearchingMaxMethod(shop.getMostExpensiveProduct());
     }
 
@@ -27,41 +28,38 @@ public class ShopTest {
     }
 
 
+    //1. Проверить, что магазин хранит верный список продуктов (количество продуктов, состав корзины)
+    public static void checkingShop(Shop shop) {
+        assertThat(shop.getProducts()).isNotEmpty();
+        assertThat(shop.getProducts()).hasSize(6);
+        List<String> subList = new ArrayList<>();
+        for (int i = 0; i < shop.getProducts().size(); i++) {
+            subList.add(shop.getProducts().get(i).getTitle());
+        }
+        assertThat(subList).contains("bread", "water", "wine", "potato", "milk", "apple");
+    }
 
+    // 2. Проверить, что магазин возвращает верный самый дорого продукт getMostExpensiveProduct
+    public static void checkingSearchingMaxMethod(Product expensiveProduct) {
+        assertThat(expensiveProduct.getTitle()).isEqualTo("wine");
+        assertThat(expensiveProduct.getCost()).isEqualTo(1200);
+    }
 
-    /*
-     1. Проверить, что магазин хранит верный список продуктов (количество продуктов, состав корзины)
-     2. Проверить, что магазин возвращает верный самый дорого продукт getMostExpensiveProduct
-     3. Проверить, что магазин возвращает верный отсортированный по цене список продуктов
-    */
-
+    // 3. Проверить, что магазин возвращает верный отсортированный по цене список продуктов
     public static void checkingSortingMethod(List<Product> products) {
         assertThat(products).isNotEmpty();
         assertThat(products.size()).isEqualTo(6);
         assertThat(products.get(0).getTitle()).isEqualTo("water");
         assertThat(products.get(0).getCost()).isEqualTo(40);
-        assertThat(products.toArray()).containsSequence("apple", "milk", "potato");
-        assertThat(products.toArray()).endsWith(1200);
+        assertThat(products.get(products.size() - 1).getTitle()).isEqualTo("wine");
+        assertThat(products.get(products.size() - 1).getCost()).isEqualTo(1200);
+        List<String> subList = new ArrayList<>();
+        for (int i = 2; i < 5; i++) {
+            subList.add(products.get(i).getTitle());
+        }
+        assertThat(subList).containsSequence("apple", "milk", "potato");
     }
 
-    public static void checkingSearchingMaxMethod(Product expensiveProduct) {
-        assertThat(expensiveProduct.getTitle()).isEqualTo("wine");
-        assertThat(expensiveProduct.getCost()).isEqualTo(1200);
-
-    }
-
-//    public static void checkingHero(Hero hero) {
-//        assertThat(hero.getName()).isEqualTo("Emmett");
-//        assertThat(hero.getArmorStrength()).isEqualTo(50);
-//        assertThat(hero.getWeapon()).isEqualTo("sword");
-//        assertThat(hero.getBag())
-//                .isNotEmpty()
-//                .hasSize(3)
-//                .contains("Bow", "Axe", "Gold");
-//        assert hero.isHuman();
-//    }
-//
-//}
 }
 
 

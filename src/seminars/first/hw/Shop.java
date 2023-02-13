@@ -18,15 +18,14 @@ public class Shop {
      * @return отсортированный по возрастанию и цене список продуктов
      */
     public List<Product> getSortedListProducts() {
-        for (int i = 0; i < products.size() - 1; i++)
-        {
+        for (int i = 0; i < products.size() - 1; i++) {
             int pos = i;
-            for (int j = i + 1; j < products.size(); j++)
-            {
+            for (int j = i + 1; j < products.size(); j++) {
                 if (products.get(j).getCost() < products.get(pos).getCost()) pos = j;
             }
-            products.set(i, products.remove(pos));
-            products.set(pos, products.remove(i + 1));
+            products.add(i, products.get(pos));
+            products.set(pos + 1, products.get(i + 1));
+            products.remove(i + 1);
         }
         return products;
     }
